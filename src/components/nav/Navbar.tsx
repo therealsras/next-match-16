@@ -3,12 +3,15 @@ import Link from "next/link"
 import { Button } from "../ui/button"
 import Navlink from "./Navlink"
 import ThemeToggle from "./ThemeToggle"
+import { getCurrentUser } from "@/lib/actions/auth-actions"
+import UserMenu from "./UserMenu"
 
-export default function Navbar() {
+export default async function Navbar() {
+    const user = await getCurrentUser();
     const navLinks = [
-        {href: '/members', label: 'Matches'},
-        {href: '/lists', label: 'Lists'},
-        {href: '/messages', label: 'Messages'}
+        { href: '/members', label: 'Matches' },
+        { href: '/lists', label: 'Lists' },
+        { href: '/messages', label: 'Messages' }
     ]
 
     return (
@@ -29,10 +32,19 @@ export default function Navbar() {
                     ))}
                 </nav>
 
-                <div className="flex gap-3">
+                <div className="flex gap-3 items-center">
                     <ThemeToggle />
-                    <Button variant='secondary'><Link href='/login'>Login</Link></Button>
-                    <Button variant='secondary'><Link href='/register'>Register</Link></Button>
+
+                    {user ? (
+                        <UserMenu user={user} />
+                    ) : (
+                        <>
+                            <Button variant='secondary'><Link href='/login'>Login</Link></Button>
+                            <Button variant='secondary'><Link href='/register'>Register</Link></Button>
+                        </>
+                    )}
+
+
                 </div>
             </div>
         </header>

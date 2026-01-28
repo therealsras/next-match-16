@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/nav/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { ToastContainer } from 'react-toastify';
 
 export const metadata: Metadata = {
   title: "NextMatch",
@@ -22,6 +23,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <ToastContainer position="bottom-right" theme="colored" hideProgressBar />
           <Navbar />
           <main className="container mt-24 mx-auto">
             {children}
