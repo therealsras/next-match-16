@@ -25,7 +25,7 @@ export default function RootLayout({
         >
           <ToastContainer position="bottom-right" theme="colored" hideProgressBar />
           <Navbar />
-          <main className="container mt-24 mx-auto">
+          <main className="container mt-18 mx-auto">
             {children}
           </main>
         </ThemeProvider>
